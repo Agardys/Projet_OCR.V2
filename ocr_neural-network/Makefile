@@ -1,21 +1,21 @@
-# Simple SDL mini Makefile
+# Makefile
 
-CC=gcc
+CC = gcc -fsanitize=address
+CPPFLAGS = -MMD
+CFLAGS = -Wall -Wextra -std=c99 -O0 -g
+LDFLAGS =
+LDLIBS =
 
-CPPFLAGS= `pkg-config --cflags sdl` -MMD
-CFLAGS= -std=c99 -O3
-LDFLAGS=
-LDLIBS= `pkg-config --libs sdl` -lSDL_image
+OBJ = neural_network.o main.o
+DEP = ${OBJ:.o=.d}
 
 all: main
 
-main: main.o neural_network.o
+main: ${OBJ}
 
 clean:
-	${RM} *.o
-	${RM} *.d
+	${RM} ${OBJ} ${DEP} main
 
-fclean: clean
-	${RM} main
+-include ${DEP}
 
 # END

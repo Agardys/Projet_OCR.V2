@@ -315,9 +315,9 @@ void load(struct Lien *lien[])
         printf("Erreur : lors de la fermeture du fichier\n");
 }
 
-void loadExemple(struct Vecteur *vect[])
+void loadExemple(struct Vecteur *vect[],char *filename)
 {
-    FILE *fp = fopen("entrainement/police0.txt", "r");
+    FILE *fp = fopen(filename, "r");
     if(fp != NULL)
     {
         int j = 0;

@@ -46,7 +46,7 @@ void calculNeurones(struct Lien *lien[], struct Neurone neuron[], int x);
 
 void load(struct Lien *lien[]);
 void save(struct Lien *lien[]);
-void loadExemple(struct Vecteur *vect[]);
+void loadExemple(struct Vecteur *vect[],char *filename);
 void PrintResultat(int pos);
 
 #endif

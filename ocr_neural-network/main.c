@@ -13,7 +13,7 @@ int main()
     struct Lien *lien[NB_LIENS];
 
     Network(neuronEntree, neuronCachee, neuronSortie, neuronBiais, lien, vecteur);
-    loadExemple(vecteur);
+    loadExemple(vecteur,"entrainement/police0.txt");
 
     //Apprentissage(neuronEntree, neuronCachee, neuronSortie, (struct Lien *) lien, vecteur);
     load(lien);
