@@ -2,3 +2,18 @@ NOUVEAU REPO GIT
 (à traiter avec soin)
 
 NEURAL NETWORK:
+
+xor_struct : fichier qui contient le premier réseau de neurone, xor
+	     sous forme de struct.
+
+xor_Automatis : xor_struct modifié qui automatise toute les déclarations
+		des différentes couches du réseau de neurone.
+
+ocr_neural-network_4letters : première partie du réseau de neurone capable
+			      de reconnaitre 4 caractères.
+
+ocr_neural-network : version finale du réseau de neurone de reconnaissance
+		     de caractères de l'OCR.
+
+
+
