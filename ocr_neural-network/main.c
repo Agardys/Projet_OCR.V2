@@ -13,7 +13,7 @@ int main()
     struct Lien *lien[NB_LIENS];
 
     Network(neuronEntree, neuronCachee, neuronSortie, neuronBiais, lien, vecteur);
-    loadExemple(vecteur,"entrainement/police0.txt");
+    //loadExemple(vecteur,"entrainement/police0.txt");
 
     //Apprentissage(neuronEntree, neuronCachee, neuronSortie, (struct Lien *) lien, vecteur);
     load(lien);
@@ -35,6 +35,33 @@ int main()
     printf("\n");
     printf("\n");
 }*/
+
+    //loadExemple(vecteur,"entrainement/police0.txt");
+    //Apprentissage(neuronEntree, neuronCachee, neuronSortie, (struct Lien *) lien, vecteur);
+
+    loadExemple(vecteur,"entrainement/police1.txt");
+    Apprentissage(neuronEntree, neuronCachee, neuronSortie, (struct Lien *) lien, vecteur);
+    save(lien);
+
+    loadExemple(vecteur,"entrainement/police2.txt");
+    Apprentissage(neuronEntree, neuronCachee, neuronSortie, (struct Lien *) lien, vecteur);
+    save(lien);
+
+    loadExemple(vecteur,"entrainement/police3.txt");
+    Apprentissage(neuronEntree, neuronCachee, neuronSortie, (struct Lien *) lien, vecteur);
+    save(lien);
+
+    loadExemple(vecteur,"entrainement/police4.txt");
+    Apprentissage(neuronEntree, neuronCachee, neuronSortie, (struct Lien *) lien, vecteur);
+    save(lien);
+
+    loadExemple(vecteur,"entrainement/police5.txt");
+    Apprentissage(neuronEntree, neuronCachee, neuronSortie, (struct Lien *) lien, vecteur);
+    save(lien);
+
+    loadExemple(vecteur,"entrainement/police6.txt");
+    Apprentissage(neuronEntree, neuronCachee, neuronSortie, (struct Lien *) lien, vecteur);
+    save(lien);
 
     //============== Résultat Réseau ==========
 
