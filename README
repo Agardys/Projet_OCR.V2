@@ -40,4 +40,5 @@ donner en paramètre l'image de la lettre a decouper  et le fichier où l'on veu
 
  /!\ make_part_dbs.py
  	-> écrit dans un fichier de dbs tous les resultats de segmentation_training pour les charactère souhaités
+ 	-> si le checking de la dbs sort OK, vous pouvez mettre la dbs(police'n'.txt) dans le folder dbs
 

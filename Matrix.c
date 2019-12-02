@@ -230,7 +230,7 @@ double **linear(Matrix *list, long nbr_de_char) {
         //free(m);
         
     }
-    printf("number of characters : %ld\n",p+1 );
+    //printf("number of characters : %ld\n",p+1 );
     res[p+1]=NULL;
     
     return res;

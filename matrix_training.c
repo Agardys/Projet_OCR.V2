@@ -1,3 +1,4 @@
+
 //
 // Created by Mac Arthur on 08/10/2019.
 //
@@ -46,7 +47,7 @@ void print_matrix(Matrix *m) {
         printf("\n");
         for (int y = 0; y < m->cols; y++) { if (m->data[x][y] == 1) { printf("#"); } else { printf("."); }}
     }
-    printf("--> option : %d",(int)m->data[m->rows-1][m->cols-1]);
+    // printf("--> option : %d",(int)m->data[m->rows-1][m->cols-1]);
 
 }
 
@@ -230,7 +231,7 @@ int **linear(Matrix *list, long nbr_de_char) {
         //free(m);
         
     }
-    printf("number of characters : %ld\n",p+1 );
+    //printf("number of characters : %ld\n",p+1 );
     res[p+1]=NULL;
     
     return res;

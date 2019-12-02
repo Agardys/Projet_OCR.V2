@@ -18,8 +18,10 @@ long nbr_de_lignes = 0, nbr_de_chars = 1;
 int** segmentation(char image[], char file[]) {
 
     ascii(image);  
+
     lines(1, 0);                // 3 : découpe les lignes
-    all_chars();
+    //all_chars();
+    rename("line1.txt", "char1.txt");
     nbr_de_chars-=1;    
     //all_chars();
     Matrix *list = matrix_listing(1); // 5 : crée des matrices avec les caractères et en fait une liste
@@ -36,9 +38,9 @@ int** segmentation(char image[], char file[]) {
     }
    for (int j = 0; j < 1; ++j) // affiche les matrices linéarisées
     {
-       print_linear(linear_list[j]);
+       //print_linear(linear_list[j]);
        write_linear(linear_list[j],file);
-       printf("\n");
+       //printf("\n");
 
 
 
@@ -49,8 +51,8 @@ int** segmentation(char image[], char file[]) {
    /* printf("\n /!\\ matrices vide = caractères vide ; option : 0-> rien; 1-> espace (avant); 2-> retour à la ligne (avant)" );
     printf("\n \n \n *** end of segmentation  ***    \n  *** end of linearisation *** \n   *** end of image treatment ***\n");*/
 
-    remove("res.bmp");
-    //remove("ascii.txt");
+    remove("char1.txt");
+    remove("ascii.txt");
     free(list);
     return linear_list;
 }
@@ -71,15 +73,15 @@ SDL_Surface* load_image(char *path)
 
 
 void all_chars() {
-    for (int i = 1; i <= nbr_de_lignes; ++i) {
+    for (int i = 1; i <= 1; ++i) {
         char n_str[3] = "";
         sprintf(n_str, "%d", i);
         char name[1000] = "line";
         strcat(name, n_str);
-        printf("working on : ");
-        puts(name);
+        //printf("working on : ");
+        //puts(name);
         strcat(name, ".txt");
-        //rr_matrix(name);
+        rr_matrix(name);
         charac(nbr_de_chars, 0, name, 0);
     }
 }
@@ -231,7 +233,7 @@ void lines(int a, int l)  /* sépare les lignes*/ {
             i--;
             fputc(' ', res);
         }
-        boolz = 1;
+        boolz = 2;
         while (ch != EOF && ch != '\n') { /*printf("%c \n",ch);*/ ch = fgetc(fp);
             if (ch == ' ') { fputc(' ', res); }
             if (ch == '0') {
@@ -283,7 +285,7 @@ void charac(int a, int l, char file[],int min)  /* sépare les char*/ { // min =
     if (i2 > 2*min) option = '0';
     if (l==0) option ='2';
 
-    fseek(fp, -1, SEEK_CUR);
+    //fseek(fp, -1, SEEK_CUR);
     while (ch != EOF && boolean == 0) 
     {
         while (i > 1) {
@@ -312,7 +314,7 @@ void charac(int a, int l, char file[],int min)  /* sépare les char*/ { // min =
     charac(nbr_de_chars, ftell(fp), file,min); /* rajouter en parm l'emplacement ou on est*/ }
     fclose(fp);
     fclose(res);
-    //lr_matrix(name); /* remet droit le caractère*/ 
+    lr_matrix(name); /* remet droit le caractère*/ 
     remove(file); 
     /*detruit le fichier avec la ligne*/ }
 

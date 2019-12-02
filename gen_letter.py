@@ -16,7 +16,7 @@ def make (letter,path):
 	d = ImageDraw.Draw(img)
 	fonts_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'fonts')
 	font = ImageFont.truetype(os.path.join(fonts_path, police), size )
-	d.text((3,3), letter, fill=(0,0,0),font=font) #(10,10) -> position du texte. Remplacer Hello World par le texte à écrire
+	d.text((3,0), letter, fill=(0,0,0),font=font) #(10,10) -> position du texte. Remplacer Hello World par le texte à écrire
 	path = path
 	img.save(path) #Sauvegarde le fichier en pil_text.png
 	# (remplacer par bmp ou ce genre de chose pour une ext. diff.)
