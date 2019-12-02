@@ -278,9 +278,9 @@ void Network(struct Neurone *neuronEntree, struct Neurone *neuronCachee, struct 
 
 //=================================================
 
-void save(struct Lien *lien[])
+void save(struct Lien *lien[],char *filename)
 {
-    FILE *fp = fopen("save1.txt","wb");
+    FILE *fp = fopen(filename,"wb");
 
     if(fp != NULL)
     {
@@ -298,9 +298,9 @@ void save(struct Lien *lien[])
         printf("Erreur : lors de la fermeture du fichier\n");
 }
 
-void load(struct Lien *lien[])
+void load(struct Lien *lien[],char *filename)
 {
-    FILE *fp = fopen("save1.txt", "r");
+    FILE *fp = fopen(filename, "r");
     if(fp != NULL)
     {
         for(int i = 0;i<NB_LIENS;i++)
@@ -341,6 +341,24 @@ void loadExemple(struct Vecteur *vect[],char *filename)
         }
 
     }
+    else
+        printf("Erreur : lors de l'ouverture du fichier\n");
+
+    if(fclose(fp) == EOF)
+        printf("Erreur : lors de la fermeture du fichier\n");
+}
+
+void loadImage(struct Vecteur *vect,char *filename)
+{
+    FILE *fp = fopen(filename,"r");
+    if(fp != NULL)
+    {
+        for(int i = 0; i<NUMIN;i++)
+        {
+            fscanf(fp, "%lf\n", &vect->premier[i]);
+        }
+    }
+
     else
         printf("Erreur : lors de l'ouverture du fichier\n");
 
@@ -555,6 +573,7 @@ void PrintResultat(int pos)
             break;
 		case 67:
 			printf("Lettre trouvé : (lettre_vide)\n");
+            break;
 		default:
 			printf("Pas de lettre trouvé.\n");
 			break;

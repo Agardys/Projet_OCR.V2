@@ -44,9 +44,10 @@ void Apprentissage(struct Neurone neuronEntree[], struct Neurone neuronCachee[],
 void Network(struct Neurone *neuronEntree, struct Neurone *neuronCachee, struct Neurone *neuronSortie,struct Neurone *neuronBiais, struct Lien **lien, struct Vecteur **vecteur);
 void calculNeurones(struct Lien *lien[], struct Neurone neuron[], int x);
 
-void load(struct Lien *lien[]);
-void save(struct Lien *lien[]);
+void load(struct Lien *lien[],char *filename);
+void save(struct Lien *lien[],char *filename);
 void loadExemple(struct Vecteur *vect[],char *filename);
+void loadImage(struct Vecteur *vect,char *filename);
 void PrintResultat(int pos);
 
 #endif

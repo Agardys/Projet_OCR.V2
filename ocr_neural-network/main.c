@@ -1,10 +1,13 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <err.h>
+#include <string.h>
 
 #include "neural_network.h"
 
 int main()
 {
+
     struct Vecteur *vecteur[EX];
     struct Neurone neuronEntree[NUMIN];
     struct Neurone neuronCachee[NUMHID];
@@ -13,10 +16,9 @@ int main()
     struct Lien *lien[NB_LIENS];
 
     Network(neuronEntree, neuronCachee, neuronSortie, neuronBiais, lien, vecteur);
-    //loadExemple(vecteur,"entrainement/police0.txt");
 
     //Apprentissage(neuronEntree, neuronCachee, neuronSortie, (struct Lien *) lien, vecteur);
-    load(lien);
+    load(lien,"6polices.txt");
 
 
 //script au cas ou pour vérification du chargement des vecteurs exemples :
@@ -39,7 +41,7 @@ int main()
     //loadExemple(vecteur,"entrainement/police0.txt");
     //Apprentissage(neuronEntree, neuronCachee, neuronSortie, (struct Lien *) lien, vecteur);
 
-    loadExemple(vecteur,"entrainement/police1.txt");
+    /*loadExemple(vecteur,"entrainement/police1.txt");
     Apprentissage(neuronEntree, neuronCachee, neuronSortie, (struct Lien *) lien, vecteur);
     save(lien);
 
@@ -61,15 +63,18 @@ int main()
 
     loadExemple(vecteur,"entrainement/police6.txt");
     Apprentissage(neuronEntree, neuronCachee, neuronSortie, (struct Lien *) lien, vecteur);
-    save(lien);
+    save(lien);*/
 
-    //============== Résultat Réseau ==========
+    //============== Résultat Réseau ===============
 
+    //loadExemple(vecteur,"entrainement/police6.txt");
+    struct Vecteur *lettre = calloc(1, sizeof(struct Vecteur));
+    loadImage(lettre,"lettrea.txt");
 
     printf("Test \"a\" :\n");
 
     for(int i = 0;i<NUMIN;i++) {
-        neuronEntree[i].poidsSortie = vecteur[0]->premier[i];
+        neuronEntree[i].poidsSortie = lettre->premier[i];
     }
 
     for(int i = 0;i<NUMHID;i++)
@@ -88,9 +93,33 @@ int main()
     }
 
     PrintResultat(j1);
+
+
+    /*printf("Test \"a\" :\n");
+
+    for(int i = 0;i<NUMIN;i++) {
+        neuronEntree[i].poidsSortie = vecteur[0]->premier[i];
+    }
+
+    for(int i = 0;i<NUMHID;i++)
+        calculNeurones(lien, neuronCachee, i);
+
+    int j1 = 0;
+    double max1 = 0.0;
+    for(int i = 0;i<NUMOUT;i++)
+    {
+        calculNeurones(lien, neuronSortie, i);
+        if(neuronSortie[i].poidsSortie>max1)
+        {
+              max1 = neuronSortie[i].poidsSortie;
+              j1 = i;
+        }
+    }
+
+    PrintResultat(j1);*/
 	
 
-    printf("Test \"B\" : \n");
+    /*printf("Test \"B\" : \n");
 
     for(int i = 0;i<NUMIN;i++)
         neuronEntree[i].poidsSortie = vecteur[27]->premier[i];
@@ -156,10 +185,11 @@ int main()
         }
     }
 
-    PrintResultat(j4);
+    PrintResultat(j4);*/
 
 
-    //save(lien);
+
+    //save(lien,filename);
 
 
     return 0;
