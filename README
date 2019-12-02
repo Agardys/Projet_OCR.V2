@@ -1,6 +1,8 @@
 Partie traitement d'image pour un OCR
 
-/!\ format unique pour le moment : bmp (32 bits)      
+
+************ segmentation ***********    
+
 
 donner en paramètre de l'executable l'image souhaiter.
 
@@ -22,3 +24,20 @@ donner en paramètre de l'executable l'image souhaiter.
 
 Il vous reste alors à traiter ses données avec un parseur et de les renvoyer à un neural network pour pouvoir recuperer votre image en texte
 NB : Jeu d'Examples donné
+
+
+*********** segmentation training ********** 
+
+donner en paramètre l'image de la lettre a decouper  et le fichier où l'on veut écrire les donners de la matrice pour future entrainement.
+
+ lettre segmentée -> 224 double (1.0 ou 0.0)
+ police data base -> lettres segmentées dans l'orde suivant : a-z A-z 0-9 . , ! ? -
+ la dbs est donc un fichier texte de 67 * 224 lignes 
+ + 1 ligne de 224 '0' utiliser pour gerer un cas de caractère vide (normalement n'arrive jamais) 
+
+ /!\ gen_letter.py 
+ 	-> permet de creer pour chacun des charactère necessaire une nouvelle image dans une nouvelle police (dans le bon dossier)
+
+ /!\ make_part_dbs.py
+ 	-> écrit dans un fichier de dbs tous les resultats de segmentation_training pour les charactère souhaités
+
