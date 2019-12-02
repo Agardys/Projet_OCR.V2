@@ -1,4 +1,24 @@
-NOUVEAU REPO GIT
-(à traiter avec soin)
+Partie traitement d'image pour un OCR
 
-GUI/IMAGE TREATMENT:
+/!\ format unique pour le moment : bmp (32 bits)      
+
+donner en paramètre de l'executable l'image souhaiter.
+
+1.1 affiche les différents caractères qui ont été découpés.
+1.2 affiche "l'option du caractère" :
+	*option = 0 -> rien
+	*option = 1 -> il y'a un espace avant le caractère
+	*option = 2 -> il y'a un retour à la ligne ('\n') avant le caractère
+
+2.1 normalise les caractère (15*15 par défaut)
+
+2.2 "linéarise" en liste d'entier les matrice pour une utilisation plus aisée pour l'OCR    
+
+/!\ *** l'option du caractère se trouve en dernière position de la liste 
+
+2.3 renvoie d'une liste qui contient toute les matrices linéarisées. 
+
+
+
+Il vous reste alors à traiter ses données avec un parseur et de les renvoyer à un neural network pour pouvoir recuperer votre image en texte
+NB : Jeu d'Examples donné
