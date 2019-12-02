@@ -200,14 +200,14 @@ int check_matrix(Matrix *m) {
     return 1;
 }
 
-int **linear(Matrix *list, long nbr_de_char) {
-    int **res = calloc(sizeof(int*),nbr_de_char);
+double **linear(Matrix *list, long nbr_de_char) {
+    double **res = calloc(sizeof(double*),nbr_de_char);
     int size = (list[0].rows) * (list[0].cols);
     long p=-1;
     for (int i = 0; i < nbr_de_char; ++i) {
 
 
-        int *line = calloc(sizeof(unsigned long  long),size);
+        double *line = calloc(sizeof(unsigned long  long),size);
         Matrix *m = &list[i];
         if (check_matrix(m))
         {
@@ -215,7 +215,7 @@ int **linear(Matrix *list, long nbr_de_char) {
         int j = 0;
         for (int x = 0; x < m->rows; x++) {
             for (int y = 0; y < m->cols; y++) {
-                line[j] = m->data[y][x];
+                line[j] = (double)m->data[y][x];
                 j += 1;
             }
 
@@ -236,11 +236,11 @@ int **linear(Matrix *list, long nbr_de_char) {
     return res;
 }
 
-void print_linear(int* list)
+void print_linear(double* list)
 {
         for (int j = 0; j < (15*15) ; j++) //limited at 100 for the print because more would be useless
         {
-            printf("%d",(list[j]));
+            printf("%f",(list[j]));
            //if(j%15==0){printf("\n");}
 
         }

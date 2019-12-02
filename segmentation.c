@@ -13,7 +13,7 @@
 long nbr_de_lignes = 0, nbr_de_chars = 1;
 
 
-int** segmentation(char image[]) {
+double** segmentation(char image[],int *compt) {
 
     ascii(image);                         // 1 et 2 : représente en ascii en faisant la moyenne des couleurs pour binariser
     lines(1, 0);                // 3 : découpe les lignes
@@ -21,7 +21,7 @@ int** segmentation(char image[]) {
     nbr_de_chars-=1;                     // 4 : découpe les caractères
     //printf("nbr %d : ",nbr_de_chars);
     Matrix *list = matrix_listing(nbr_de_chars); // 5 : crée des matrices avec les caractères et en fait une liste
-    int **linear_list= linear(list, nbr_de_chars); //6 : liste les matrices linéarisées
+    double **linear_list= linear(list, nbr_de_chars); //6 : liste les matrices linéarisées
     //dernier nombre de chaque matrice linéarisée = option -> 0= rien 1= espaces (avant) 2= retour à la ligne (avant) 
     //si matrice vide (que des 0) sauf l'option : mettre caractere vide : ''
     for (int j = 0; j < nbr_de_chars; ++j) // affiche tous les caractères en ascii art
@@ -32,7 +32,7 @@ int** segmentation(char image[]) {
 
 
     }
-  /* for (int j = 0; j < nbr_de_chars; ++j) // affiche les matrices linéarisées
+  /*for (int j = 0; j < nbr_de_chars; ++j) // affiche les matrices linéarisées
     {
        print_linear(linear_list[j]);
        printf("\n");
@@ -56,6 +56,7 @@ int** segmentation(char image[]) {
     remove("res.bmp");
     remove("ascii.txt");
     free(list);
+    *compt = nbr_de_chars;
     return linear_list;
 }
 

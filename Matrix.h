@@ -22,6 +22,6 @@ void print_matrix(Matrix *m);
 void rr_matrix(char file[]); // rotation de matrice droite format fichier texte
 void lr_matrix(char file[]); // rotation de matrice gauche format fichier texte
 
-int **linear(Matrix *list, long nbr_de_char);
-void print_linear(int *list);
+double **linear(Matrix *list, long nbr_de_char);
+void print_linear(double *list);
 #endif //UNTITLED_MATRIX_H
