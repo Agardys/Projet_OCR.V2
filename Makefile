@@ -1,11 +1,11 @@
 # Simple SDL mini Makefile
 
 CC=gcc
-
-CPPFLAGS= `pkg-config --cflags sdl` -MMD
+ 
+CPPFLAGS= `sdl-config --libs` #`pkg-config --cflags sdl` #-MMD #`sdl-config --cflags` -lSDL_ttf
 CFLAGS= -Werror -W -Wextra -Wall -std=c99 -O0
-LDFLAGS=
-LDLIBS= `pkg-config --libs sdl` -lSDL_image
+LDFLAGS= `pkg-config --libs sdl` -lSDL_image -lSDL
+LDLIBS= 
 
 all: main
 

@@ -1,6 +1,8 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <SDL/SDL.h>
+#include <SDL_image.h>
+//#include <SDL/SDL_ttf.h>
 #include "display.h"
 #include "segmentation.h"
 
@@ -28,17 +30,36 @@ int main()
 
 	SDL_Event event;
 
+	//SDL_Color black = {0, 0, 0};
+
 	SDL_Init(SDL_INIT_VIDEO);
 
-	screen = SDL_SetVideoMode(640,480, 32, SDL_HWSURFACE);
+	/*if(TTF_Init()==-1) {
+    printf("TTF_Init: %s\n", TTF_GetError());
+    exit(2);
+	}
+
+	TTF_Font *font;
+	font = TTF_OpenFont("externals/fonts/aleo-light-webfont.ttf", 16);
+	*/
+	screen = SDL_SetVideoMode(350,480, 32, SDL_HWSURFACE);
 	SDL_WM_SetCaption("OCR", NULL);
 	
 	SDL_FillRect(screen, NULL, SDL_MapRGB(screen->format, 169, 169, 169));
 	SDL_Flip(screen);
 
-	button(400, 100, 125, 40, SDL_MapRGB(screen->format, 0xff, 0xff, 0xff), screen);
-	//button(200, 100, 197, 40, SDL_MapRGB(screen->format, 0x00, 0x00, 0x00), screen);
-	button(245, 250, 150, 60, SDL_MapRGB(screen->format, 0xc9, 0xc9, 0xc9), screen);
+
+	button(4, 100, 342, 40, SDL_MapRGB(screen->format, 0x00, 0x00, 0x00), screen);
+	button(5, 145, 125, 40, SDL_MapRGB(screen->format, 0xc9, 0xc9, 0xc9), screen);
+
+	//SDL_Rect position;
+	//position.x = 5;
+	//position.y = 145; 
+	//SDL_Surface *text_surface;
+
+	//text_surface = TTF_RenderText_Shaded(font, "Start", black)
+
+
 
 	SDL_Flip(screen);
 
@@ -64,7 +85,7 @@ int main()
 				{
 					if(event.button.x < 396 && event.button.x > 244 && event.button.y < 310 && event.button.y > 250)
 					{
-						button(245, 250, 150, 60, SDL_MapRGB(screen->format, 0x00, 0x00, 0x00), screen);
+						button(5, 145, 125, 40, SDL_MapRGB(screen->format, 0xc9, 0xc9, 0xc9), screen);
 						clicked = 1;
 						SDL_Flip(screen);	
 					}
@@ -74,7 +95,7 @@ int main()
 			case SDL_MOUSEBUTTONUP:
 				if (event.button.button == SDL_BUTTON_LEFT)
 				{
-					button(245, 250, 150, 60, SDL_MapRGB(screen->format, 0xc9, 0xc9, 0xc9), screen);
+					button(5, 145, 125, 40, SDL_MapRGB(screen->format, 0xc9, 0xc9, 0xc9), screen);
 					SDL_Flip(screen);
 					if(clicked == 1)
 					{
@@ -83,10 +104,12 @@ int main()
 					}
 				}
 		}
+
+		//SDL_BlitSurface(text_surface, NULL, screen, position);
 	}
 
-
-
+	//TTF_CloseFont(font);
+	//TTF_Quit();
 	SDL_Quit();
 	return 0;
 }
