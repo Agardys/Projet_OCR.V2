@@ -1,5 +1,4 @@
 
-//
 // Created by Mac Arthur on 08/10/2019.
 //
 #include <stdlib.h>
@@ -47,7 +46,7 @@ void print_matrix(Matrix *m) {
         printf("\n");
         for (int y = 0; y < m->cols; y++) { if (m->data[x][y] == 1) { printf("#"); } else { printf("."); }}
     }
-    // printf("--> option : %d",(int)m->data[m->rows-1][m->cols-1]);
+    //printf("--> option : %d",(int)m->data[m->rows-1][m->cols-1]);
 
 }
 
@@ -92,7 +91,7 @@ Matrix *matrix_filler(char file[]) {
     mat->data[y-1][nbr_cars] = fgetc(fp) ;
     fclose(fp);
    // print_matrix(mat);
-  // remove(file); /*detruit le fichier avec le char*/ 
+    remove(file); /*detruit le fichier avec le char*/ 
     return mat;
 }
 
@@ -118,7 +117,7 @@ void rr_matrix(char file[]) {
     }
     rewind(fp);
     int i = 1;
-    int i2 = 0;
+    int i2 = 1;
     while ((ch = fgetc(fp)) != EOF) {
         i2++;
         if (ch == '\n') { /*fputc(ch,rotate);*/ i++;
@@ -183,7 +182,7 @@ Matrix *matrix_listing(long nbr_de_chars) {
         strcat(name, n_str);
         strcat(name, ".txt");
         list[i - 1] = *matrix_norm(matrix_filler(name)); // renvoie la matrice normaliser de la matrice remplie par la fonction filler du fichier "name"
-	
+    
     }
     char n_str[300] = "";
     sprintf(n_str, "%ld", nbr_de_chars+1);
@@ -202,7 +201,7 @@ int check_matrix(Matrix *m) {
 }
 
 int **linear(Matrix *list, long nbr_de_char) {
-    int **res = calloc(sizeof(int*),nbr_de_char);
+    int **res = calloc(sizeof(double*),nbr_de_char);
     int size = (list[0].rows) * (list[0].cols);
     long p=-1;
     for (int i = 0; i < nbr_de_char; ++i) {
@@ -216,7 +215,7 @@ int **linear(Matrix *list, long nbr_de_char) {
         int j = 0;
         for (int x = 0; x < m->rows; x++) {
             for (int y = 0; y < m->cols; y++) {
-                line[j] = m->data[y][x];
+                line[j] = (double)m->data[y][x];
                 j += 1;
             }
 

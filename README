@@ -28,12 +28,17 @@ NB : Jeu d'Examples donné
 
 *********** segmentation training ********** 
 
-donner en paramètre l'image de la lettre a decouper  et le fichier où l'on veut écrire les donners de la matrice pour future entrainement.
+donner en paramètre l'image  a decouper  et le fichier où l'on veut écrire les donners de la matrice pour future entrainement.
 
  lettre segmentée -> 224 double (1.0 ou 0.0)
- police data base -> lettres segmentées dans l'orde suivant : a-z A-z 0-9 . , ! ? -
- la dbs est donc un fichier texte de 67 * 224 lignes 
- + 1 ligne de 224 '0' utiliser pour gerer un cas de caractère vide (normalement n'arrive jamais) 
+ police data base -> lettres segmentées dans l'orde suivant : //à redéfinir
+ la dbs est donc un fichier texte de 86 * 224 lignes  
+ |
+  --> utiliser "gen_image_table.py" pour refaire une image au bon format et contenat les 	 bonnes données pour segmentation_training.
+
+
+
+
 
  /!\ gen_letter.py 
  	-> permet de creer pour chacun des charactère necessaire une nouvelle image dans une nouvelle police (dans le bon dossier)

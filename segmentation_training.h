@@ -3,7 +3,7 @@
 #define SEGMENTATION_H
 #include "pixel_operations.h"
 
-int** segmentation(char image[], char file[]);
+int** segmentation(char image[],int *compt, char file[]);
 void aff(); //affiche l'image en ascii
 SDL_Surface* load_image(char *path);
 void ascii();  //creer n fichier avec l'ascii

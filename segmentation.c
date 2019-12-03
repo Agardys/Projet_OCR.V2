@@ -207,7 +207,7 @@ void ascii(char file[30])   /* creer un fichier txt avec l'ascii de l'image bina
             fputc('\n',fp2);
     }
     fclose(fp2);
-    //SDL_FreeSurface(image_surface);
+    SDL_FreeSurface(image_surface);
 }
 
 void lines(int a, int l)  /* sépare les lignes*/ {

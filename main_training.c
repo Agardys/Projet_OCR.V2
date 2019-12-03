@@ -7,8 +7,17 @@
 
 int main(int argc, char* argv[]) {
     
+    printf("\n*******************************  SEGMENTATION TRAINING **************************\n");
     if (argc < 3 ) errx(1, "paramètres invalides");
-    segmentation(argv[1],argv[2]);
+    int compt = 0;
+    int *a = &compt;
+    segmentation(argv[1],a,argv[2]);
+    printf("\n--> char detected : %d\n",compt );
+
+    if(compt == 210)
+    	printf("\nChecking DBS : OK\n\n");
+    else
+    	printf("\nChecking DBS : KO\n\n");
     return 0;
 }
 

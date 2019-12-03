@@ -13,22 +13,18 @@
 long nbr_de_lignes = 0, nbr_de_chars = 1;
 
 
-// training lettre par lettre, on applique légerement modifié pour pas decouper inutilement
+int** segmentation(char image[],int *compt, char file[]) {
 
-int** segmentation(char image[], char file[]) {
-
-    ascii(image);  
-
+    ascii(image);                         // 1 et 2 : représente en ascii en faisant la moyenne des couleurs pour binariser
     lines(1, 0);                // 3 : découpe les lignes
-    //all_chars();
-    rename("line1.txt", "char1.txt");
-    nbr_de_chars-=1;    
-    //all_chars();
-    Matrix *list = matrix_listing(1); // 5 : crée des matrices avec les caractères et en fait une liste
-    int **linear_list= linear(list, 1); //6 : liste les matrices linéarisées
+    all_chars();
+    nbr_de_chars-=1;                     // 4 : découpe les caractères
+    //printf("nbr %d : ",nbr_de_chars);
+    Matrix *list = matrix_listing(nbr_de_chars); // 5 : crée des matrices avec les caractères et en fait une liste
+    int **linear_list= linear(list, nbr_de_chars); //6 : liste les matrices linéarisées
     //dernier nombre de chaque matrice linéarisée = option -> 0= rien 1= espaces (avant) 2= retour à la ligne (avant) 
     //si matrice vide (que des 0) sauf l'option : mettre caractere vide : ''
-    for (int j = 0; j <1; ++j) // affiche tous les caractères en ascii art
+    for (int j = 0; j < nbr_de_chars; ++j) // affiche tous les caractères en ascii art
     {
        print_matrix(&list[j]);
        printf("\n");
@@ -36,24 +32,27 @@ int** segmentation(char image[], char file[]) {
 
 
     }
-   for (int j = 0; j < 1; ++j) // affiche les matrices linéarisées
+  for (int j = 0; j < nbr_de_chars; ++j) // affiche les matrices linéarisées
     {
-       //print_linear(linear_list[j]);
        write_linear(linear_list[j],file);
-       //printf("\n");
-
-
 
     }
     
 
+    printf("\n \n \n *** end of segmentation  ***    \n  *** end of linearisation *** \n   *** end of image treatment ***\n");
+    printf("\n /!\\   Writing data base : Finish\n");
+    
+    char n_str[10];
+    sprintf(n_str, "%ld", nbr_de_chars+1);
+    char name[1000] = "char";
+    strcat(name, n_str);
+    strcat(name, ".txt");
 
-   /* printf("\n /!\\ matrices vide = caractères vide ; option : 0-> rien; 1-> espace (avant); 2-> retour à la ligne (avant)" );
-    printf("\n \n \n *** end of segmentation  ***    \n  *** end of linearisation *** \n   *** end of image treatment ***\n");*/
-
-    remove("char1.txt");
+    remove(name); //supprimer le dernier fichier txt
+    remove("res.bmp");
     remove("ascii.txt");
     free(list);
+    *compt = nbr_de_chars;
     return linear_list;
 }
 
@@ -73,20 +72,20 @@ SDL_Surface* load_image(char *path)
 
 
 void all_chars() {
-    for (int i = 1; i <= 1; ++i) {
+    for (int i = 1; i <= nbr_de_lignes; ++i) {
         char n_str[3] = "";
         sprintf(n_str, "%d", i);
         char name[1000] = "line";
         strcat(name, n_str);
-        //printf("working on : ");
-        //puts(name);
+        printf("working on : ");
+        puts(name);
         strcat(name, ".txt");
         rr_matrix(name);
         charac(nbr_de_chars, 0, name, 0);
     }
 }
 
-int bin(char file[]) {  /* binarise une image bmp*/ FILE *fp, *res;
+int bin(char file[30]) {  /* binarise une image bmp*/ FILE *fp, *res;
     int ch;
     int ch2;
     int ch3;
@@ -164,7 +163,7 @@ void aff()  /* affiche en console l'ascii de l'image binariser*/ {
 }
 
 
-void ascii(char file[])   /* creer un fichier txt avec l'ascii de l'image binarisée*/ {
+void ascii(char file[30])   /* creer un fichier txt avec l'ascii de l'image binarisée*/ {
     FILE *fp, *fp2;
     SDL_Surface* image_surface = NULL;
     fp = fopen(file, "rb");
@@ -191,7 +190,7 @@ void ascii(char file[])   /* creer un fichier txt avec l'ascii de l'image binari
             SDL_GetRGB(pixel, image_surface->format, &r, &g, &b);
             
             int average = (int)(r + g + b)/3;
-            if (average < 254)
+            if (average < 170)
                 fputc('0',fp2);
             else
                 fputc(' ',fp2);
@@ -204,7 +203,7 @@ void ascii(char file[])   /* creer un fichier txt avec l'ascii de l'image binari
             fputc('\n',fp2);
     }
     fclose(fp2);
-    //SDL_FreeSurface(image_surface);
+    SDL_FreeSurface(image_surface);
 }
 
 void lines(int a, int l)  /* sépare les lignes*/ {
@@ -220,21 +219,18 @@ void lines(int a, int l)  /* sépare les lignes*/ {
     int boolz = 0;
     fseek(fp, l, SEEK_SET);
     int i = 0;
-    while ((ch = fgetc(fp)) != EOF && ch != '0') 
-    {
+    while ((ch = fgetc(fp)) != EOF && ch != '0') {
         i++;
         if (ch == '\n') { i = 0; }
     }
-    fseek(fp, -1, SEEK_CUR);
-
+   // fseek(fp, -1, SEEK_CUR);
     while (ch != EOF && boolz != 1) {
-
         while (i > 0) {
             i--;
             fputc(' ', res);
         }
-        boolz = 2;
-        while (ch != EOF && ch != '\n') { /*printf("%c \n",ch);*/ ch = fgetc(fp);
+        boolz = 1;
+        while (ch != EOF && ch != '\n') { /* printf("%d \n",ch);*/ ch = fgetc(fp);
             if (ch == ' ') { fputc(' ', res); }
             if (ch == '0') {
                 fputc('0', res);
@@ -242,13 +238,12 @@ void lines(int a, int l)  /* sépare les lignes*/ {
             }
         }
         fputc('\n', res);
-        if (ch != EOF)
-            ch = fgetc(fp);
+        ch = fgetc(fp);
     }
     if (ch != EOF) {
         
         nbr_de_lignes += 1;
-        lines(a + 1, ftell(fp)); /* rajouter en parm l'emplacement ou on est*/ } else   // remove(name);
+        lines(a + 1, ftell(fp)); /* rajouter en parm l'emplacement ou on est*/ } else remove(name);
     
     fclose(fp);
     fclose(res);
@@ -284,8 +279,7 @@ void charac(int a, int l, char file[],int min)  /* sépare les char*/ { // min =
     if (l > 0 && min == 0 ) min = i2;
     if (i2 > 2*min) option = '0';
     if (l==0) option ='2';
-
-    //fseek(fp, -1, SEEK_CUR);
+    fseek(fp, -1, SEEK_CUR);
     while (ch != EOF && boolean == 0) 
     {
         while (i > 1) {
@@ -315,8 +309,7 @@ void charac(int a, int l, char file[],int min)  /* sépare les char*/ { // min =
     fclose(fp);
     fclose(res);
     lr_matrix(name); /* remet droit le caractère*/ 
-    remove(file); 
-    /*detruit le fichier avec la ligne*/ }
+    remove(file); /*detruit le fichier avec la ligne*/ }
 
 
 
