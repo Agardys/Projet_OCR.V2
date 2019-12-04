@@ -1,1 +1,48 @@
+<<<<<<< HEAD
 vla ti pa le projet d'OCR il est faiia
+=======
+Partie traitement d'image pour un OCR
+
+
+************ segmentation ***********    
+
+
+donner en paramètre de l'executable l'image souhaiter.
+
+1.1 affiche les différents caractères qui ont été découpés.
+1.2 affiche "l'option du caractère" :
+	*option = 0 -> rien
+	*option = 1 -> il y'a un espace avant le caractère
+	*option = 2 -> il y'a un retour à la ligne ('\n') avant le caractère
+
+2.1 normalise les caractère (15*15 par défaut)
+
+2.2 "linéarise" en liste d'entier les matrice pour une utilisation plus aisée pour l'OCR    
+
+/!\ *** l'option du caractère se trouve en dernière position de la liste 
+
+2.3 renvoie d'une liste qui contient toute les matrices linéarisées. 
+
+
+
+Il vous reste alors à traiter ses données avec un parseur et de les renvoyer à un neural network pour pouvoir recuperer votre image en texte
+NB : Jeu d'Examples donné
+
+
+*********** segmentation training ********** 
+
+donner en paramètre l'image de la lettre a decouper  et le fichier où l'on veut écrire les donners de la matrice pour future entrainement.
+
+ lettre segmentée -> 224 double (1.0 ou 0.0)
+ police data base -> lettres segmentées dans l'orde suivant : a-z A-z 0-9 . , ! ? -
+ la dbs est donc un fichier texte de 67 * 224 lignes 
+ + 1 ligne de 224 '0' utiliser pour gerer un cas de caractère vide (normalement n'arrive jamais) 
+
+ /!\ gen_letter.py 
+ 	-> permet de creer pour chacun des charactère necessaire une nouvelle image dans une nouvelle police (dans le bon dossier)
+
+ /!\ make_part_dbs.py
+ 	-> écrit dans un fichier de dbs tous les resultats de segmentation_training pour les charactère souhaités
+ 	-> si le checking de la dbs sort OK, vous pouvez mettre la dbs(police'n'.txt) dans le folder dbs
+
+>>>>>>> Image_Treatment

@@ -1,21 +1,42 @@
-# Simple SDL mini Makefile
+# Makefile
+
+#CC = gcc \
+#CFLAGS = `pkg-config --cflags gtk+-3.0` -Wall -O3 -rdynamic
+#LDLIBS = `pkg-config --libs gtk+-3.0`
+
+#EXE = test segmentation Matrix 
+
+#all: $(EXE)
+
+#$(foreach f, $(EXE), $(eval $(f):))
+
+#.PHONY: clean
+
+#clean:
+#	${RM} $(EXE) main
+# END
 
 CC=gcc
- 
-CPPFLAGS= `sdl-config --libs` #`pkg-config --cflags sdl` #-MMD #`sdl-config --cflags` -lSDL_ttf
-CFLAGS= -Werror -W -Wextra -Wall -std=c99 -O0
-LDFLAGS= `pkg-config --libs sdl` -lSDL_image -lSDL
-LDLIBS= 
+CFLAGS=-W -Wall -Wextra -Werror `pkg-config --cflags gtk+-3.0` -O3 -rdynamic
+LDFLAGS= `pkg-config --libs gtk+-3.0`
+EXEC= test
+SRCS = test.c segmentation.c Matrix.c
+OBJS=$(SRCS:.c=.o)
 
-all: main
+all: $(EXEC)
 
-main: main.o display.o segmentation.o Matrix.o 
+$(EXEC): $(OBJS)
+	$(CC) -o $@ $^ $(LDFLAGS)
+
+$(OBJS): $(SRCS)
+	$(CC) -c $? $(CFLAGS)
 
 clean:
-	${RM} *.o
-	${RM} *.d
+	rm -rvf *~
+	rm -rvf \#*
+	rm -rvf $(OBJS)
 
 fclean: clean
-	${RM} main
+	rm -rvf $(EXEC)
 
-# END
+re: fclean $(EXEC)
