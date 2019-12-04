@@ -14,10 +14,10 @@ int main(int argc, char* argv[]) {
     segmentation(argv[1],a,argv[2]);
     printf("\n--> char detected : %d\n",compt );
 
-    if(compt == 210)
+    if(compt == 70)
     	printf("\nChecking DBS : OK\n\n");
     else
-    	printf("\nChecking DBS : KO\n\n");
+    	printf("\nChecking DBS : KO  /!\\ /!\\\n\n");
     return 0;
 }
 
