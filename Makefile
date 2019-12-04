@@ -17,10 +17,10 @@
 # END
 
 CC=gcc
-CFLAGS=-W -Wall -Wextra -Werror `pkg-config --cflags gtk+-3.0` -O3 -rdynamic
-LDFLAGS= `pkg-config --libs gtk+-3.0`
+CFLAGS=-W -Wall -Wextra -Werror `pkg-config --cflags gtk+-3.0` -O3 
+LDFLAGS= `pkg-config --libs gtk+-3.0` -rdynamic
 EXEC= test
-SRCS = test.c segmentation.c Matrix.c
+SRCS = test.c #segmentation.c Matrix.c
 OBJS=$(SRCS:.c=.o)
 
 all: $(EXEC)

@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 vla ti pa le projet d'OCR il est faiia
 =======
 Partie traitement d'image pour un OCR
@@ -46,3 +47,24 @@ donner en paramètre l'image de la lettre a decouper  et le fichier où l'on veu
  	-> si le checking de la dbs sort OK, vous pouvez mettre la dbs(police'n'.txt) dans le folder dbs
 
 >>>>>>> Image_Treatment
+=======
+NOUVEAU REPO GIT
+(à traiter avec soin)
+
+NEURAL NETWORK:
+
+xor_struct : fichier qui contient le premier réseau de neurone, xor
+	     sous forme de struct.
+
+xor_Automatis : xor_struct modifié qui automatise toute les déclarations
+		des différentes couches du réseau de neurone.
+
+ocr_neural-network_4letters : première partie du réseau de neurone capable
+			      de reconnaitre 4 caractères.
+
+ocr_neural-network : version finale du réseau de neurone de reconnaissance
+		     de caractères de l'OCR.
+
+
+
+>>>>>>> origin/Neural_Network
