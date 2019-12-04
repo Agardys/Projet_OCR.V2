@@ -383,229 +383,229 @@ void loadImage(struct Vecteur *vect[],double **Tab,int size)
 {
     for(int i = 0;i<size;i++)
     {
-        for(int j = 0;j<NUMIN;j++)
+        for(int j = 0;j<=NUMIN;j++)
         {
             vect[i]->premier[j] = Tab[i][j];
         }
     }
 }
 
-char* PrintResultat(int pos)
+char PrintResultat(int pos)
 {
 	switch(pos)
 	{
 		case 0:
 			printf("Lettre trouvé : A\n");
-            return "A";
+            return 'A';
 		case 1:
 			printf("Lettre trouvé : B\n");
-			return "B";
+			return 'B';
 		case 2:
 			printf("Lettre trouvé : C\n");
-			return "C";
+			return 'C';
 		case 3:
 			printf("Lettre trouvé : D\n");
-			return "D";
+			return 'D';
 		case 4:
 			printf("Lettre trouvé : E\n");
-			return "E";
+			return 'E';
 		case 5:
 			printf("Lettre trouvé : F\n");
-			return "F";
+			return 'F';
 		case 6:
 			printf("Lettre trouvé : G\n");
-			return "G";
+			return 'G';
 		case 7:
 			printf("Lettre trouvé : H\n");
-			return "H";
+			return 'H';
 		case 8:
 			printf("Lettre trouvé : I\n");
-            return "I";
+            return 'I';
 		case 9:
 			printf("Lettre trouvé : J\n");
-            return "J";
+            return 'J';
 		case 10:
 			printf("Lettre trouvé : K\n");
-            return "K";
+            return 'K';
 		case 11:
 			printf("Lettre trouvé : L\n");
-            return "L";
+            return 'L';
 		case 12:
 			printf("Lettre trouvé : M\n");
-            return "M";
+            return 'M';
 		case 13:
 			printf("Lettre trouvé : N\n");
-            return "N";
+            return 'N';
 		case 14:
 			printf("Lettre trouvé : O\n");
-            return "O";
+            return 'O';
 		case 15:
 			printf("Lettre trouvé : P\n");
-            return "P";
+            return 'P';
 		case 16:
 			printf("Lettre trouvé : Q\n");
-            return "Q";
+            return 'Q';
 		case 17:
 			printf("Lettre trouvé : R\n");
-            return "R";
+            return 'R';
 		case 18:
 			printf("Lettre trouvé : S\n");
-            return "S";
+            return 'S';
 		case 19:
 			printf("Lettre trouvé : T\n");
-            return "T";
+            return 'T';
 		case 20:
 			printf("Lettre trouvé : U\n");
-            return "U";
+            return 'U';
 		case 21:
 			printf("Lettre trouvé : V\n");
-            return "V";
+            return 'V';
 		case 22:
 			printf("Lettre trouvé : W\n");
-            return "W";
+            return 'W';
 		case 23:
 			printf("Lettre trouvé : X\n");
-            return "X";
+            return 'X';
 		case 24:
 			printf("Lettre trouvé : Y\n");
-            return "Y";
+            return 'Y';
 		case 25:
 			printf("Lettre trouvé : Z\n");
-            return "Z";
+            return 'Z';
 		case 26:
 			printf("Lettre trouvé : a\n");
-            return "a";
+            return 'a';
 		case 27:
 			printf("Lettre trouvé : b\n");
-            return "b";
+            return 'b';
 		case 28:
 			printf("Lettre trouvé : c\n");
-            return "c";
+            return 'c';
 		case 29:
 			printf("Lettre trouvé : d\n");
-            return "d";
+            return 'd';
 		case 30:
 			printf("Lettre trouvé : e\n");
-            return "e";
+            return 'e';
 		case 31:
 			printf("Lettre trouvé : f\n");
-            return "f";
+            return 'f';
 		case 32:
 			printf("Lettre trouvé : g\n");
-            return "g";
+            return 'g';
 		case 33:
 			printf("Lettre trouvé : h\n");
-            return "h";
+            return 'h';
 		case 34:
 			printf("Lettre trouvé : i\n");
-            return "i";
+            return 'i';
 		case 35:
 			printf("Lettre trouvé : j\n");
-            return "j";
+            return 'j';
 		case 36:
 			printf("Lettre trouvé : k\n");
-            return "k";
+            return 'k';
 		case 37:
 			printf("Lettre trouvé : l\n");
-            return "l";
+            return 'l';
 		case 38:
 			printf("Lettre trouvé : m\n");
-            return "m";
+            return 'm';
 		case 39:
 			printf("Lettre trouvé : n\n");
-            return "n";
+            return 'n';
 		case 40:
 			printf("Lettre trouvé : o\n");
-            return "o";
+            return 'o';
 		case 41:
 			printf("Lettre trouvé : p\n");
-            return "p";
+            return 'p';
 		case 42:
 			printf("Lettre trouvé : q\n");
-            return "q";
+            return 'q';
 		case 43:
 			printf("Lettre trouvé : r\n");
-            return "r";
+            return 'r';
 		case 44:
 			printf("Lettre trouvé : s\n");
-            return "s";
+            return 's';
 		case 45:
 			printf("Lettre trouvé : t\n");
-            return "t";
+            return 't';
 		case 46:
 			printf("Lettre trouvé : u\n");
-            return "u";
+            return 'u';
 		case 47:
 			printf("Lettre trouvé : v\n");
-            return "v";
+            return 'v';
         case 48:
 			printf("Lettre trouvé : w\n");
-            return "w";
+            return 'w';
 		case 49:
-			printf("Lettre trouvé : x\n");
-            return "x";
+			printf("'ettre trouvé : x\n");
+            return 'x';
 		case 50:
 			printf("Lettre trouvé : y\n");
-            return "y";
+            return 'y';
 		case 51:
 			printf("Lettre trouvé : z\n");
-            return "z";
+            return 'z';
 		case 52:
 			printf("Lettre trouvé : &\n");
-            return "&";
+            return '&';
 		case 53:
 			printf("Lettre trouvé : 0\n");
-            return "0";
+            return '0';
 		case 54:
 			printf("Lettre trouvé : 1\n");
-            return "1";
+            return '1';
 		case 55:
 			printf("Lettre trouvé : 2\n");
-            return "2";
+            return '2';
 		case 56:
 			printf("Lettre trouvé : 3\n");
-            return "3";
+            return '3';
 		case 57:
 			printf("Lettre trouvé : 4\n");
-            return "4";
+            return '4';
 		case 58:
 			printf("Lettre trouvé : 5\n");
-            return "5";
+            return '5';
 		case 59:
 			printf("Lettre trouvé : 6\n");
-            return "6";
+            return '6';
 		case 60:
 			printf("Lettre trouvé : 7\n");
-            return "7";
+            return '7';
 		case 61:
 			printf("Lettre trouvé : 8\n");
-            return "8";
+            return '8';
 		case 62:
 			printf("Lettre trouvé : 9\n");
-            return "9";
+            return '9';
 		case 63:
 			printf("Lettre trouvé : (\n");
-            return "(";
+            return '(';
 		case 64:
 			printf("Lettre trouvé : $\n");
-            return "$";
+            return '$';
         case 65:
             printf("Lettre trouvé : .\n");
-            return ".";
+            return '.';
         case 66:
             printf("Lettre trouvé : ,\n");
-            return ",";
+            return ',';
         case 67:
             printf("Lettre trouvé : !\n");
-            return "!";
+            return '!';
         case 68:
             printf("Lettre trouvé : ?\n");
-            return "?";
+            return '?';
         case 69:
             printf("Lettre trouvé : )\n");
-            return ")";
+            return ')';
 		default:
 			printf("Pas de lettre trouvé.\n");
-			return "*";
+			return '*';
 	}
 }

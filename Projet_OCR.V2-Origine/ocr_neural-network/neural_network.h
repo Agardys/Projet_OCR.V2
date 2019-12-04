@@ -51,6 +51,6 @@ void load(struct Lien *lien[],char *filename);
 void save(struct Lien *lien[],char *filename);
 void loadExemple(struct Vecteur *vect[],char *filename);
 void loadImage(struct Vecteur *vect[],double **Tab,int size);
-char *PrintResultat(int pos);
+char PrintResultat(int pos);
 
 #endif

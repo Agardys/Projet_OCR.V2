@@ -281,7 +281,7 @@ void charac(int a, int l, char file[],int min)  /* sépare les char*/ { // min =
     }
 
     if (l > 0 && min == 0 ) min = i2;
-    if (i2 > 2*min) option = '0';
+    if (i2 > min) option = '0';
     if (l==0) option ='2';
     fseek(fp, -1, SEEK_CUR);
     while (ch != EOF && boolean == 0) 
