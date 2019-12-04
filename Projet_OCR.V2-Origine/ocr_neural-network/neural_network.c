@@ -276,6 +276,16 @@ void Network(struct Neurone *neuronEntree, struct Neurone *neuronCachee, struct 
     comptBiais += NUMOUT;
 }
 
+void FreeNetwork(struct Lien **lien, struct Vecteur **vecteur)
+{
+    for(int i = 0;i<EX;i++)
+        free(vecteur[i]);
+
+    for(int i = 0;i<NB_LIENS;i++)
+        free(lien[i]);
+
+}
+
 
 
 
@@ -384,353 +394,213 @@ char* PrintResultat(int pos)
 {
 	switch(pos)
 	{
-        case 70:
-        case 140:
 		case 0:
 			printf("Lettre trouvé : A\n");
             return "A";
-        case 71:
-        case 141:
 		case 1:
 			printf("Lettre trouvé : B\n");
 			return "B";
-        case 72:
-        case 142:
 		case 2:
 			printf("Lettre trouvé : C\n");
 			return "C";
-        case 73:
-        case 143:
 		case 3:
 			printf("Lettre trouvé : D\n");
 			return "D";
-        case 74:
-        case 144:
 		case 4:
 			printf("Lettre trouvé : E\n");
 			return "E";
-        case 75:
-        case 145:
 		case 5:
 			printf("Lettre trouvé : F\n");
 			return "F";
-        case 76:
-        case 146:
 		case 6:
 			printf("Lettre trouvé : G\n");
 			return "G";
-        case 77:
-        case 147:
 		case 7:
 			printf("Lettre trouvé : H\n");
 			return "H";
-        case 78:
-        case 148:
 		case 8:
 			printf("Lettre trouvé : I\n");
             return "I";
-        case 79:
-        case 149:
 		case 9:
 			printf("Lettre trouvé : J\n");
             return "J";
-        case 80:
-        case 150:
 		case 10:
 			printf("Lettre trouvé : K\n");
             return "K";
-        case 81:
-        case 151:
 		case 11:
 			printf("Lettre trouvé : L\n");
             return "L";
-        case 82:
-        case 152:
 		case 12:
 			printf("Lettre trouvé : M\n");
             return "M";
-        case 83:
-        case 153:
 		case 13:
 			printf("Lettre trouvé : N\n");
             return "N";
-        case 84:
-        case 154:
 		case 14:
 			printf("Lettre trouvé : O\n");
             return "O";
-        case 85:
-        case 155:
 		case 15:
 			printf("Lettre trouvé : P\n");
             return "P";
-        case 86:
-        case 156:
 		case 16:
 			printf("Lettre trouvé : Q\n");
             return "Q";
-        case 87:
-        case 157:
 		case 17:
 			printf("Lettre trouvé : R\n");
             return "R";
-        case 88:
-        case 158:
 		case 18:
 			printf("Lettre trouvé : S\n");
             return "S";
-        case 89:
-        case 159:
 		case 19:
 			printf("Lettre trouvé : T\n");
             return "T";
-        case 90:
-        case 160:
 		case 20:
 			printf("Lettre trouvé : U\n");
             return "U";
-        case 91:
-        case 161:
 		case 21:
 			printf("Lettre trouvé : V\n");
             return "V";
-        case 92:
-        case 162:
 		case 22:
 			printf("Lettre trouvé : W\n");
             return "W";
-        case 93:
-        case 163:
 		case 23:
 			printf("Lettre trouvé : X\n");
             return "X";
-        case 94:
-        case 164:
 		case 24:
 			printf("Lettre trouvé : Y\n");
             return "Y";
-        case 95:
-        case 165:
 		case 25:
 			printf("Lettre trouvé : Z\n");
             return "Z";
-        case 96:
-        case 166:
 		case 26:
 			printf("Lettre trouvé : a\n");
             return "a";
-        case 97:
-        case 167:
 		case 27:
 			printf("Lettre trouvé : b\n");
             return "b";
-        case 98:
-        case 168:
 		case 28:
 			printf("Lettre trouvé : c\n");
             return "c";
-        case 99:
-        case 169:
 		case 29:
 			printf("Lettre trouvé : d\n");
             return "d";
-        case 100:
-        case 170:
 		case 30:
 			printf("Lettre trouvé : e\n");
             return "e";
-        case 101:
-        case 171:
 		case 31:
 			printf("Lettre trouvé : f\n");
             return "f";
-        case 102:
-        case 172:
 		case 32:
 			printf("Lettre trouvé : g\n");
             return "g";
-        case 103:
-        case 173:
 		case 33:
 			printf("Lettre trouvé : h\n");
             return "h";
-        case 104:
-        case 174:
 		case 34:
 			printf("Lettre trouvé : i\n");
             return "i";
-        case 105:
-        case 175:
 		case 35:
 			printf("Lettre trouvé : j\n");
             return "j";
-        case 106:
-        case 176:
 		case 36:
 			printf("Lettre trouvé : k\n");
             return "k";
-        case 107:
-        case 177:
 		case 37:
 			printf("Lettre trouvé : l\n");
             return "l";
-        case 108:
-        case 178:
 		case 38:
 			printf("Lettre trouvé : m\n");
             return "m";
-        case 109:
-        case 179:
 		case 39:
 			printf("Lettre trouvé : n\n");
             return "n";
-        case 110:
-        case 180:
 		case 40:
 			printf("Lettre trouvé : o\n");
             return "o";
-        case 111:
-        case 181:
 		case 41:
 			printf("Lettre trouvé : p\n");
             return "p";
-        case 112:
-        case 182:
 		case 42:
 			printf("Lettre trouvé : q\n");
             return "q";
-        case 113:
-        case 183:
 		case 43:
 			printf("Lettre trouvé : r\n");
             return "r";
-        case 114:
-        case 184:
 		case 44:
 			printf("Lettre trouvé : s\n");
             return "s";
-        case 115:
-        case 185:
 		case 45:
 			printf("Lettre trouvé : t\n");
             return "t";
-        case 116:
-        case 186:
 		case 46:
 			printf("Lettre trouvé : u\n");
             return "u";
-        case 117:
-        case 187:
 		case 47:
 			printf("Lettre trouvé : v\n");
             return "v";
-        case 118:
-        case 188:
         case 48:
 			printf("Lettre trouvé : w\n");
             return "w";
-        case 119:
-        case 189:
 		case 49:
 			printf("Lettre trouvé : x\n");
             return "x";
-        case 120:
-        case 190:
 		case 50:
 			printf("Lettre trouvé : y\n");
             return "y";
-        case 121:
-        case 191:
 		case 51:
 			printf("Lettre trouvé : z\n");
             return "z";
-        case 122:
-        case 192:
 		case 52:
 			printf("Lettre trouvé : &\n");
             return "&";
-        case 123:
-        case 193:
 		case 53:
 			printf("Lettre trouvé : 0\n");
             return "0";
-        case 124:
-        case 194:
 		case 54:
 			printf("Lettre trouvé : 1\n");
             return "1";
-        case 125:
-        case 195:
 		case 55:
 			printf("Lettre trouvé : 2\n");
             return "2";
-        case 126:
-        case 196:
 		case 56:
 			printf("Lettre trouvé : 3\n");
             return "3";
-        case 127:
-        case 197:
 		case 57:
 			printf("Lettre trouvé : 4\n");
             return "4";
-        case 128:
-        case 198:
 		case 58:
 			printf("Lettre trouvé : 5\n");
             return "5";
-        case 129:
-        case 199:
 		case 59:
 			printf("Lettre trouvé : 6\n");
             return "6";
-        case 130:
-        case 200:
 		case 60:
 			printf("Lettre trouvé : 7\n");
             return "7";
-        case 131:
-        case 201:
 		case 61:
 			printf("Lettre trouvé : 8\n");
             return "8";
-        case 132:
-        case 202:
 		case 62:
 			printf("Lettre trouvé : 9\n");
             return "9";
-        case 133:
-        case 203:
 		case 63:
 			printf("Lettre trouvé : (\n");
             return "(";
-        case 134:
-        case 204:
 		case 64:
 			printf("Lettre trouvé : $\n");
             return "$";
-        case 135:
-        case 205:
         case 65:
             printf("Lettre trouvé : .\n");
             return ".";
-        case 136:
-        case 206:
         case 66:
             printf("Lettre trouvé : ,\n");
             return ",";
-        case 137:
-        case 207:
         case 67:
             printf("Lettre trouvé : !\n");
             return "!";
-        case 138:
-        case 208:
         case 68:
             printf("Lettre trouvé : ?\n");
             return "?";
-        case 139:
-        case 209:
         case 69:
             printf("Lettre trouvé : )\n");
             return ")";

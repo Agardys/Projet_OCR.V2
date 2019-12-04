@@ -15,9 +15,10 @@
 
 #define ALPHA 0.1
 #define BIAS -1.0
-#define DAY 300
+#define DAY 50
 #define LIMIT 0.001
 
+#define NBPOLICES 25
 #define EX 70
 
 struct Neurone{ //structure de formation des neurones
@@ -42,6 +43,7 @@ struct Lien{ //structure de la connexion entre deux neurones
 void Apprentissage(struct Neurone neuronEntree[], struct Neurone neuronCachee[], struct Neurone neuronSortie[], struct Lien *lien, struct Vecteur *vecteur[]);
 
 void Network(struct Neurone *neuronEntree, struct Neurone *neuronCachee, struct Neurone *neuronSortie,struct Neurone *neuronBiais, struct Lien **lien, struct Vecteur **vecteur);
+void FreeNetwork(struct Lien **lien, struct Vecteur **vecteur);
 void calculNeurones(struct Lien *lien[], struct Neurone neuron[], int x);
 
 void WriteFile(char *filename, char *letters[],int size);

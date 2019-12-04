@@ -7,7 +7,7 @@
 #include "segmentation.h"
 #include "neural_network.h"
 
-int main(int argc,char *argv[])
+int main()
 {
     //int argc,char *argv[]
     /*if(argc < 2)
@@ -62,21 +62,25 @@ int main(int argc,char *argv[])
     //Apprentissage(neuronEntree, neuronCachee, neuronSortie, (struct Lien *) lien, vecteur);
     //save(lien,"save1.txt");
     char *res[EX];*/
-    char *filenames = {"entrainement/dbs_police3alpha.txt","","","","",""};
-    int i = 0;
-    int l = sizeof(filenames)
+    char *filenames[NBPOLICES] = {"entrainement/police0.txt","entrainement/police1.txt","entrainement/police2.txt","entrainement/police3.txt","entrainement/police4.txt","entrainement/police5.txt",
+                       "entrainement/police6.txt","entrainement/police7.txt","entrainement/police8.txt","entrainement/police9.txt","entrainement/police10.txt","entrainement/police11.txt",
+                       "entrainement/police12.txt","entrainement/police13.txt","entrainement/police14.txt","entrainement/police15.txt","entrainement/police16.txt","entrainement/police17.txt",
+                       "entrainement/police18.txt","entrainement/police19.txt","entrainement/police20.txt","entrainement/police21.txt","entrainement/police22.txt","entrainement/police23.txt",
+                        "entrainement/police24.txt"};
 
-    while(i<l)
+    int i = 0;
+    while(i<NBPOLICES)
     {
+        printf("%s\n",filenames[i]);
         loadExemple(vecteur,filenames[i]);
         Apprentissage(neuronEntree, neuronCachee, neuronSortie, (struct Lien *) lien, vecteur);
         save(lien,"save1.txt");
-        i++
+        i++;
     }
 
 
     //interrogation du caractère pour l'OCR
-    for(int k = 0;k<compt;k++)
+    /*for(int k = 0;k<compt;k++)
     {
         for(int i = 0;i<NUMIN;i++)
             neuronEntree[i].poidsSortie = vecteur[k]->premier[i];
@@ -99,7 +103,9 @@ int main(int argc,char *argv[])
         res[k] = PrintResultat(j1);
     }
 
-    WriteFile("RESULTAT.TXT",res,EX);
+    WriteFile("RESULTAT.TXT",res,EX);*/
+
+    FreeNetwork(lien, vecteur);
 
 
     return 0;
