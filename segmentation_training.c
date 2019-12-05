@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "Matrix_training.h"
+#include "matrix_training.h"
 #include "segmentation_training.h"
 #include "SDL/SDL.h"
 #include "SDL/SDL_image.h"
@@ -73,7 +73,7 @@ SDL_Surface* load_image(char *path)
 
 void all_chars() {
     for (int i = 1; i <= nbr_de_lignes; ++i) {
-        char n_str[3] = "";
+        char n_str[11] = "";
         sprintf(n_str, "%d", i);
         char name[1000] = "line";
         strcat(name, n_str);
