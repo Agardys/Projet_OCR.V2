@@ -19,6 +19,11 @@ GtkWidget *progress_bar;
 GtkWidget *image1;
 GtkWidget *image2;
 GtkWidget *frame2;
+GtkWidget *scroll_window;
+GtkWidget *viewport;
+GtkWidget *text_view;
+GtkTextBuffer *TextBuffer;
+
 GtkBuilder *builder;
 
 
@@ -107,7 +112,7 @@ int second_main(char* filename)
   FreeNetwork(lien, vecteur);
 
 
-  return 0;
+  return compt;
 }
 
 
@@ -116,7 +121,8 @@ int second_main(char* filename)
 
 int main(int argc, char *argv[])
 {
-
+  //second_main(argv[1]);
+  //return 0;
   //=====================================GTK PART======================================
 
   gtk_init(&argc, &argv);
@@ -135,6 +141,9 @@ int main(int argc, char *argv[])
   progress_bar = GTK_WIDGET(gtk_builder_get_object(builder, "progress_bar"));
   image2 = GTK_WIDGET(gtk_builder_get_object(builder, "image2"));
   frame2 = GTK_WIDGET(gtk_builder_get_object(builder, "frame2"));
+  scroll_window = GTK_WIDGET(gtk_builder_get_object(builder, "scroll_window"));
+  viewport = GTK_WIDGET(gtk_builder_get_object(builder, "viewport"));
+  text_view = GTK_WIDGET(gtk_builder_get_object(builder, "text_view"));
 
   gtk_widget_show(window);
 
@@ -172,13 +181,38 @@ void on_file_chooser_file_set(GtkFileChooserButton *f)
   }
 }
 
+void on_changed_text(GtkTextBuffer *TextBuffer)
+{
+  //gtk_widget_show(saveText);
+  (void)TextBuffer;
+}
 
+
+void show_text(FILE *fp, int compt)
+{
+  TextBuffer = gtk_text_view_get_buffer(GTK_TEXT_VIEW(text_view));
+  g_signal_connect(TextBuffer, "changed", G_CALLBACK(on_changed_text), NULL);
+  char ch;
+  char string[compt * 2];
+  int i = 0;
+  while ((ch = fgetc(fp)) != EOF)
+  {
+    string[i] = ch;
+    i++;
+  }
+  gtk_text_buffer_set_text(TextBuffer,(const gchar *) string , (gint) -1);
+}
 
 void on_Submit_button_clicked (GtkButton *b)
 {
   if (filename)
-    second_main(filename);
+  {
+    int compt = second_main(filename);
+    printf("\nend of OCR\n");
+    FILE *fp = fopen("RESULTAT.txt", "r");
+    show_text(fp, compt);
+    return;
+  }
   (void)b;
-  printf("submit\n");
 }
 

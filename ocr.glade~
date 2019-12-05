@@ -7,6 +7,9 @@
     <property name="default_width">250</property>
     <property name="default_height">440</property>
     <child>
+      <placeholder/>
+    </child>
+    <child>
       <object class="GtkFixed" id="fixed1">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
@@ -50,7 +53,7 @@
                       </object>
                       <packing>
                         <property name="x">97</property>
-                        <property name="y">200</property>
+                        <property name="y">180</property>
                       </packing>
                     </child>
                     <child>
@@ -87,12 +90,36 @@
               <object class="GtkImage" id="image2">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="pixbuf">git_logo.png</property>
+                <property name="pixbuf">kintore.jpeg</property>
               </object>
             </child>
           </object>
           <packing>
             <property name="x">250</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkScrolledWindow" id="scroll_window">
+            <property name="width_request">420</property>
+            <property name="height_request">440</property>
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="shadow_type">in</property>
+            <child>
+              <object class="GtkViewport" id="viewport">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <child>
+                  <object class="GtkTextView" id="text_view">
+                    <property name="visible">True</property>
+                    <property name="can_focus">True</property>
+                  </object>
+                </child>
+              </object>
+            </child>
+          </object>
+          <packing>
+            <property name="x">550</property>
           </packing>
         </child>
       </object>
