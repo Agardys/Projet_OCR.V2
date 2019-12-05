@@ -20,7 +20,7 @@ CC=gcc
 CFLAGS=-W -Wall -Wextra -Werror `pkg-config --cflags gtk+-3.0` -O3 -rdynamic
 LDFLAGS= `pkg-config --libs gtk+-3.0`
 EXEC= test
-SRCS = test.c segmentation.c Matrix.c
+SRCS = test.c
 OBJS=$(SRCS:.c=.o)
 
 all: $(EXEC)
