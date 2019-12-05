@@ -194,7 +194,7 @@ void ascii(char file[30])   /* creer un fichier txt avec l'ascii de l'image bina
             SDL_GetRGB(pixel, image_surface->format, &r, &g, &b);
             
             int average = (int)(r + g + b)/3;
-            if (average < 127)
+            if (average < 170)
                 fputc('0',fp2);
             else
                 fputc(' ',fp2);
