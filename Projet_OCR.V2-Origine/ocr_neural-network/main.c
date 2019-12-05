@@ -124,7 +124,6 @@ int main(int argc,char *argv[])
                 break;
             case 0:
                 printf("option 0\n");
-                fputc('\0',fp);
                 fputc(PrintResultat(j1),fp);
                 break;
             default:
