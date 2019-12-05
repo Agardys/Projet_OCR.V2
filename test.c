@@ -111,7 +111,7 @@ int second_main(char* filename)
   fclose(fp);
   FreeNetwork(lien, vecteur);
 
-
+  printf("\n%d\n", compt);
   return compt;
 }
 
@@ -188,29 +188,53 @@ void on_changed_text(GtkTextBuffer *TextBuffer)
 }
 
 
-void show_text(FILE *fp, int compt)
+void show_text(int compt)
 {
   TextBuffer = gtk_text_view_get_buffer(GTK_TEXT_VIEW(text_view));
   g_signal_connect(TextBuffer, "changed", G_CALLBACK(on_changed_text), NULL);
-  char ch;
-  char string[compt * 2];
+  char buffer[compt * 2];
   int i = 0;
-  while ((ch = fgetc(fp)) != EOF)
+  char c;
+  FILE *fp = fopen("RESULTAT.txt", "r");
+  while(i<100) 
   {
-    string[i] = ch;
-    i++;
+    c = fgetc(fp);
+        
+    buffer[i] = c;
+    i += 1;
   }
-  gtk_text_buffer_set_text(TextBuffer,(const gchar *) string , (gint) -1);
+  fclose(fp);
+  printf("%s\n",buffer );
+  gtk_text_buffer_set_text(TextBuffer,(const gchar *) buffer , (gint) -1);
+}
+
+void test_text()
+{
+  char buffer[40];
+  int i = 0;
+  char c;
+  FILE *fp = fopen("RESULTAT.txt", "r");
+  while(1) {
+      c = fgetc(fp);
+      if( feof(fp) ) { 
+         break ;
+      }
+      buffer[i] = c;
+      i += 1;
+   }
+   fclose(fp);
+   printf("%s\n", buffer);
 }
 
 void on_Submit_button_clicked (GtkButton *b)
 {
   if (filename)
   {
-    int compt = second_main(filename);
+    //second_main(filename);
     printf("\nend of OCR\n");
-    FILE *fp = fopen("RESULTAT.txt", "r");
-    show_text(fp, compt);
+    //FILE *fp = fopen("RESULTAT.txt", "r");
+    show_text(100);
+    //test_text();
     return;
   }
   (void)b;
