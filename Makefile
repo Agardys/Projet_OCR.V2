@@ -1,42 +1,24 @@
 # Makefile
 
-#CC = gcc \
-#CFLAGS = `pkg-config --cflags gtk+-3.0` -Wall -O3 -rdynamic
-#LDLIBS = `pkg-config --libs gtk+-3.0`
+CC = gcc 
+CPPFLAGS = -MMD `pkg-config --cflags sdl` `pkg-config --cflags gtk+-3.0`
+CFLAGS = -W -Werror -Wall -Wextra -std=c99 -O3
+LDLIBS = -lm `pkg-config --libs sdl` -lSDL_image `pkg-config --libs gtk+-3.0` -rdynamic
+RM = rm -rf 
+EXEC= application
+SRCS= main.c segmentation.c Matrix.c pixel_operations.c neural_network.c 
+OBJS= $(SRCS:.c=.o)
+all: $(EXEC) $(EXEC_TRAIN)
 
-#EXE = test segmentation Matrix 
 
-#all: $(EXE)
+$(EXEC) : $(OBJS)
+	$(CC)  $^ $(LDLIBS) -o $@
 
-#$(foreach f, $(EXE), $(eval $(f):))
-
-#.PHONY: clean
-
-#clean:
-#	${RM} $(EXE) main
-# END
-
-CC=gcc
-CFLAGS=-W -Wall -Wextra -Werror `pkg-config --cflags gtk+-3.0` -O3 
-LDFLAGS= `pkg-config --libs gtk+-3.0` -rdynamic
-EXEC= test
-SRCS = test.c #segmentation.c Matrix.c
-OBJS=$(SRCS:.c=.o)
-
-all: $(EXEC)
-
-$(EXEC): $(OBJS)
-	$(CC) -o $@ $^ $(LDFLAGS)
-
-$(OBJS): $(SRCS)
-	$(CC) -c $? $(CFLAGS)
+$(OBJS): $(SRCS) 
+	$(CC)  $(CFLAGS) $(CPPFLAGS) -c $(SRCS) 
 
 clean:
-	rm -rvf *~
-	rm -rvf \#*
-	rm -rvf $(OBJS)
+	${RM} *.h.gch *.d segmentation a.out *.o *.dSYM
 
-fclean: clean
-	rm -rvf $(EXEC)
 
-re: fclean $(EXEC)
+# END 	
