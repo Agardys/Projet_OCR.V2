@@ -8,7 +8,7 @@ RM = rm -rf
 EXEC= segmentation
 EXEC_TRAIN= segmentation_training
 SRCS= main.c segmentation.c Matrix.c pixel_operations.c
-SRCS_TRAIN= main_training.c segmentation_training.c Matrix_training.c pixel_operations_training.c
+SRCS_TRAIN= main_training.c segmentation_training.c matrix_training.c pixel_operations_training.c
 OBJS= $(SRCS:.c=.o)
 OBJS_TRAIN= $(SRCS_TRAIN:.c=.o)
 all: $(EXEC) $(EXEC_TRAIN)

@@ -34,8 +34,8 @@ Matrix *make_matrix(int n_rows, int n_cols) {
     struct Matrix *matrix = malloc(sizeof(Matrix));
     matrix->rows = n_rows;
     matrix->cols = n_cols;
-    double **data = malloc(sizeof(double *) * n_rows);
-    for (int x = 0; x < n_rows; x++) { data[x] = calloc(n_cols, sizeof(double)); }
+    double **data = malloc(sizeof(long double *) * n_rows);
+    for (int x = 0; x < n_rows; x++) { data[x] = calloc(n_cols, sizeof(long double)); }
     matrix->data = data;
     return matrix;
 }

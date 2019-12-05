@@ -4,7 +4,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
-#include "Matrix_training.h"
+#include "matrix_training.h"
 
 Matrix *matrix_norm(Matrix *m) {
     int column_size = 15;
