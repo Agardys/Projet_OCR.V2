@@ -213,10 +213,13 @@ void on_save_clicked(GtkButton *b)
     			i += 1;
   				g_file_set_contents (filepath, buffer, strlen(buffer), NULL);
   			}
+  			fclose(fp);
+  			remove("RESULTAT.txt");
 		}
 		else
 			printf("error\n");
 	}
+	
 	gtk_widget_destroy(dialog);
 }
 
@@ -247,6 +250,7 @@ void on_Submit_button_clicked (GtkButton *b)
   {
     int compt = second_main(filename);
     show_text(compt);
+    
     return;
   }
   (void)b;
