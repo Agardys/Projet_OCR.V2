@@ -98,7 +98,7 @@ double Random()
 
 void Apprentissage(struct Neurone neuronEntree[], struct Neurone neuronCachee[], struct Neurone neuronSortie[], struct Lien *lien, struct Vecteur *vecteur[])
 {
-    double networkErrorTab[EX];
+    //double networkErrorTab[EX];
     double networkError = 0.0;
     int    randomTab[EX]; //sélection aléatoire d'un vecteur d'apprentissage ==> résultat
     int    verif = 0;
@@ -114,7 +114,7 @@ void Apprentissage(struct Neurone neuronEntree[], struct Neurone neuronCachee[],
             for(int i=0; i<EX; i++)
             {
                 randomTab[i]    = 0;
-                networkErrorTab[i] = 0.0;
+                //networkErrorTab[i] = 0.0;
             }
         }
         do
@@ -164,16 +164,8 @@ void Apprentissage(struct Neurone neuronEntree[], struct Neurone neuronCachee[],
         networkError = vecteur[nb]->res[i] - neuronSortie[i].poidsSortie;
         //printf("%lf\n",neuronSortie[i].poidsSortie);
 
-        networkErrorTab[x%EX] = networkError;
-        /*if(x%EX%4)
-        {
-            if(checkLimite(networkErrorTab) == 0)
-            {
-                //verif = 1;
-                //break;
-                printf("coucou\n");
-            }
-        }*/
+        //networkErrorTab[x%EX] = networkError;
+
         CalculSortieErreur(networkError, neuronSortie, i);
     }
     //if(verif == 1)

@@ -13,12 +13,9 @@ int main(int argc,char *argv[])
     //int argc,char *argv[]
     if(argc < 2)
 	    errx(1,"Not enough... try again !");
-
-
-
+	   
+	   
 //=======INITIALISATION DU RÉSEAU DE NEURONE======
-
-
 
 
 
@@ -34,22 +31,6 @@ int main(int argc,char *argv[])
 
 //=================================================
 
-//script au cas ou pour vérification du chargement des vecteurs exemples :
-    /*for(int i = 0;i<EX;i++)
-{
-    printf("vecteur premier %d : ",i);
-    for(int j = 0;j<NUMIN;j++) {
-        printf("%f ", vecteur[i]->premier[j]);
-    }
-    printf("\n");
-    printf("vecteur res %d : ",i);
-    for(int z = 0;z<NUMOUT;z++)
-    {
-        printf("%f ", vecteur[i]->res[z]);
-    }
-    printf("\n");
-    printf("\n");
-}*/
 
     //============== Résultat Réseau ===============
 

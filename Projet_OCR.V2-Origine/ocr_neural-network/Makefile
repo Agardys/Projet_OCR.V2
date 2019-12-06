@@ -2,7 +2,7 @@
 
 CC = gcc 
 CPPFLAGS = -MMD `pkg-config --cflags sdl`
-CFLAGS = -W -std=c99  -O3 -flto
+CFLAGS = -W -Werror -Wextra -Wall -std=c99  -O3 -flto
 LDLIBS = -lm `pkg-config --libs sdl` -lSDL_image  -O3 -flto
 RM = rm -rf 
 EXEC= application
