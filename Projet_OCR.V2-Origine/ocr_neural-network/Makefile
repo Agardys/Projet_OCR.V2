@@ -6,19 +6,19 @@ CFLAGS = -W -Werror -Wextra -Wall -std=c99  -O3 -flto
 LDLIBS = -lm `pkg-config --libs sdl` -lSDL_image  -O3 -flto
 RM = rm -rf 
 EXEC= application
-SRCS= main.c segmentation.c Matrix.c pixel_operations.c neural_network.c 
+SRCS= main.c  neural_network.c 
 OBJS= $(SRCS:.c=.o)
 all: $(EXEC) $(EXEC_TRAIN)
 
 
-$(EXEC) : $(OBJS)
+$(EXEC) : $(OBJS) segmentation.o Matrix.o pixel_operations.o
 	$(CC)  $^ $(LDLIBS) -o $@
 
 $(OBJS): $(SRCS) 
 	$(CC)  $(CFLAGS) $(CPPFLAGS) -c $(SRCS) 
 
 clean:
-	${RM} *.h.gch *.d segmentation a.out *.o *.dSYM
+	${RM} *.h.gch *.d segmentation a.out  *.dSYM
 
 
 # END
