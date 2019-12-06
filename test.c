@@ -43,7 +43,7 @@ int second_main(char* filename)
   struct Neurone neuronBiais[NUMBIAS];
   struct Lien *lien[NB_LIENS];
   Network(neuronEntree, neuronCachee, neuronSortie, neuronBiais, lien, vecteur);
-
+  load(lien,"save2.txt");
 
   //============== Résultat Réseau ===============
 
