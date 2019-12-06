@@ -12,7 +12,7 @@ int main(int argc,char *argv[])
     FILE* fp;
     //int argc,char *argv[]
     if(argc < 2)
-        errx(1,"Not enough... try again !");
+	    errx(1,"Not enough... try again !");
 
 
 
@@ -30,7 +30,7 @@ int main(int argc,char *argv[])
     struct Lien *lien[NB_LIENS];
     Network(neuronEntree, neuronCachee, neuronSortie, neuronBiais, lien, vecteur);
     //Apprentissage(neuronEntree, neuronCachee, neuronSortie, (struct Lien *) lien, vecteur);
-    //load(lien,"sauvegarde_poids/saveFirst3Alpha.txt");
+    load(lien,"sauvegarde_poids/254Polices/save2.txt");
 
 //=================================================
 
@@ -124,6 +124,7 @@ int main(int argc,char *argv[])
                 break;
             case 0:
                 printf("option 0\n");
+                //fputc('\0',fp);
                 fputc(PrintResultat(j1),fp);
                 break;
             default:
@@ -133,7 +134,7 @@ int main(int argc,char *argv[])
         //res[k] = PrintResultat(j1);
     }
 
-    //WriteFile("RESULTAT.TXT",res,EX);
+   // WriteFile("RESULTAT.TXT",res,EX);
     
     
     fclose(fp);

@@ -2,8 +2,8 @@
 
 CC = gcc 
 CPPFLAGS = -MMD `pkg-config --cflags sdl`
-CFLAGS = -W -std=c99 -O3
-LDLIBS = -lm `pkg-config --libs sdl` -lSDL_image
+CFLAGS = -W -std=c99  -O3 -flto
+LDLIBS = -lm `pkg-config --libs sdl` -lSDL_image  -O3 -flto
 RM = rm -rf 
 EXEC= application
 SRCS= main.c segmentation.c Matrix.c pixel_operations.c neural_network.c 
