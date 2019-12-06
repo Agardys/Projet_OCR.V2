@@ -18,7 +18,7 @@ $(OBJS): $(SRCS)
 	$(CC)  $(CFLAGS) $(CPPFLAGS) -c $(SRCS) 
 
 clean:
-	${RM} *.h.gch *.d segmentation a.out *.dSYM application
+	${RM} *.h.gch *.d segmentation a.out *.dSYM application test.o RESULTAT.txt
 
 
 # END 	
