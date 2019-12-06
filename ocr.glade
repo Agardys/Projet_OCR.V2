@@ -56,17 +56,6 @@
                         <property name="y">180</property>
                       </packing>
                     </child>
-                    <child>
-                      <object class="GtkProgressBar" id="progress_bar">
-                        <property name="width_request">243</property>
-                        <property name="visible">True</property>
-                        <property name="can_focus">False</property>
-                      </object>
-                      <packing>
-                        <property name="x">3</property>
-                        <property name="y">260</property>
-                      </packing>
-                    </child>
                   </object>
                 </child>
               </object>
