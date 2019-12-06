@@ -24,7 +24,7 @@ double** segmentation(char image[],int *compt) {
     double **linear_list= linear(list, nbr_de_chars); //6 : liste les matrices linéarisées
     //dernier nombre de chaque matrice linéarisée = option -> 0= rien 1= espaces (avant) 2= retour à la ligne (avant) 
     //si matrice vide (que des 0) sauf l'option : mettre caractere vide : ''
-    for (int j = 0; j < nbr_de_chars; ++j) // affiche tous les caractères en ascii art
+    for (int j = j; j < nbr_de_chars; ++j) // affiche tous les caractères en ascii art
     {
        print_matrix(&list[j]);
        printf("\n");
@@ -272,7 +272,6 @@ void charac(int a, int l, char file[],int min)  /* sépare les char*/ { // min =
     fseek(fp, l, SEEK_SET);
     int i = 0;
     int i2 = 0;
- 
     char option = '1';   // option : '0' -> rien ; '1' -> espace ; '2' -> retour à la ligne
 
     while ((ch = fgetc(fp)) != EOF && ch != '0') {

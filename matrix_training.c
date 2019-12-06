@@ -88,7 +88,7 @@ Matrix *matrix_filler(char file[]) {
 
     }
     fseek(fp, -1, SEEK_CUR);
-    mat->data[y-1][nbr_cars] = fgetc(fp) ;
+    //mat->data[y-1][nbr_cars] = fgetc(fp) ;
     fclose(fp);
    // print_matrix(mat);
     remove(file); /*detruit le fichier avec le char*/ 

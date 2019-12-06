@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "Matrix.h"
 #include "segmentation_training.h"
 #include <err.h>
 

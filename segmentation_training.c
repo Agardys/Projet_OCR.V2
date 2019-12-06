@@ -73,6 +73,7 @@ SDL_Surface* load_image(char *path)
 
 void all_chars() {
     for (int i = 1; i <= nbr_de_lignes; ++i) {
+		
         char n_str[11] = "";
         sprintf(n_str, "%d", i);
         char name[1000] = "line";
@@ -80,9 +81,12 @@ void all_chars() {
         printf("working on : ");
         puts(name);
         strcat(name, ".txt");
+        
         rr_matrix(name);
+        printf("HH");
         charac(nbr_de_chars, 0, name, 0);
     }
+    
 }
 
 int bin(char file[30]) {  /* binarise une image bmp*/ FILE *fp, *res;
@@ -254,7 +258,7 @@ void lines(int a, int l)  /* sépare les lignes*/ {
 
 
 void charac(int a, int l, char file[],int min)  /* sépare les char*/ { // min = séparation minimum entre 2 charactères
-   
+    
     FILE *fp, *res;                                                                
     fp = fopen(file, "r");
     char n_str[10];
@@ -268,7 +272,7 @@ void charac(int a, int l, char file[],int min)  /* sépare les char*/ { // min =
     fseek(fp, l, SEEK_SET);
     int i = 0;
     int i2 = 0;
- 
+    printf("%s\n",name);
     char option = '1';   // option : '0' -> rien ; '1' -> espace ; '2' -> retour à la ligne
 
     while ((ch = fgetc(fp)) != EOF && ch != '0') {
