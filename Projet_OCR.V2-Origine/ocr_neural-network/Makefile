@@ -18,7 +18,7 @@ $(OBJS): $(SRCS)
 	$(CC)  $(CFLAGS) $(CPPFLAGS) -c $(SRCS) 
 
 clean:
-	${RM} *.h.gch *.d segmentation a.out  *.dSYM
+	${RM} *.h.gch *.d segmentation a.out  *.dSYM main.o neural_network.o application
 
 
 # END
