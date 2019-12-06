@@ -8,8 +8,12 @@
 #include "segmentation.h"
 #include "neural_network.h"
 
-
+char *text;
 char *filename;
+
+int countDownMax, countCurrent;
+
+gboolean timer_handler(GtkWidget *);
 
 GtkWidget *window;
 GtkWidget *fixed1;
@@ -22,10 +26,13 @@ GtkWidget *frame2;
 GtkWidget *scroll_window;
 GtkWidget *viewport;
 GtkWidget *text_view;
+GtkWidget *save_button;
 GtkTextBuffer *TextBuffer;
 
 GtkBuilder *builder;
 
+
+void on_progress(gdouble fraction, gchar *info);
 
 
 int second_main(char* filename)
@@ -54,8 +61,15 @@ int second_main(char* filename)
 
   int *size = &compt;
 
+  gtk_progress_bar_set_text(GTK_PROGRESS_BAR(progress_bar), "lancement...");
+  on_progress((gdouble)0.02, "segmentation...");
+  gtk_progress_bar_pulse(GTK_PROGRESS_BAR(progress_bar));
+
   //traitement de tout les caractères de l'image :
   double **Tab = segmentation(filename,size);
+
+  gtk_progress_bar_pulse(GTK_PROGRESS_BAR(progress_bar));
+  on_progress((gdouble)0.10, "segmentation...");
 
   struct Vecteur *lettre[compt];
 
@@ -64,7 +78,8 @@ int second_main(char* filename)
 
   loadImage(lettre,Tab,compt);
 
-
+  //on_progress((gdouble)0.5, "sending to network...");
+  gtk_progress_bar_pulse(GTK_PROGRESS_BAR(progress_bar));
   //interrogation du caractère pour l'OCR
   fp = fopen("RESULTAT.txt","w");
   for(int k = 0;k<compt;k++)
@@ -72,8 +87,12 @@ int second_main(char* filename)
       for(int i = 0;i<NUMIN;i++)
         neuronEntree[i].poidsSortie = lettre[k]->premier[i];
 
+      gtk_progress_bar_pulse(GTK_PROGRESS_BAR(progress_bar));
+
       for(int i = 0;i<NUMHID;i++)
         calculNeurones(lien, neuronCachee, i);
+
+      gtk_progress_bar_pulse(GTK_PROGRESS_BAR(progress_bar));
 
       int j1 = 0;
       double max1 = 0.0;
@@ -86,6 +105,10 @@ int second_main(char* filename)
           j1 = i;
         }
       }
+
+      gtk_progress_bar_pulse(GTK_PROGRESS_BAR(progress_bar));
+
+
       switch((int)lettre[k]->premier[224])
       {
         case 1:
@@ -100,18 +123,23 @@ int second_main(char* filename)
  	        break;
         case 0:
           printf("option 0\n");
-          fputc('\0',fp);
+          //fputc('\0',fp);
           fputc(PrintResultat(j1),fp);
           break;
         default:
           printf("option interouvable\n");
       }
+
+      gtk_progress_bar_pulse(GTK_PROGRESS_BAR(progress_bar));
   }
+
+  //on_progress((gdouble)0.95, "creating output file...");
+
 
   fclose(fp);
   FreeNetwork(lien, vecteur);
 
-  printf("\n%d\n", compt);
+  //on_progress((gdouble)1.00, "ending...");
   return compt;
 }
 
@@ -144,10 +172,16 @@ int main(int argc, char *argv[])
   scroll_window = GTK_WIDGET(gtk_builder_get_object(builder, "scroll_window"));
   viewport = GTK_WIDGET(gtk_builder_get_object(builder, "viewport"));
   text_view = GTK_WIDGET(gtk_builder_get_object(builder, "text_view"));
+  save_button = GTK_WIDGET(gtk_builder_get_object(builder, "save"));
+
 
   gtk_widget_show(window);
 
   image1 = NULL;
+
+  gtk_progress_bar_set_pulse_step(GTK_PROGRESS_BAR(progress_bar), (gdouble)0.01);
+
+  gtk_progress_bar_set_text(GTK_PROGRESS_BAR(progress_bar), "");
 
   gtk_main();
 
@@ -188,55 +222,72 @@ void on_changed_text(GtkTextBuffer *TextBuffer)
 }
 
 
+void on_save_clicked(GtkButton *b)
+{
+	GtkWidget *dialog;
+	GtkWidget *toplevel = gtk_widget_get_toplevel(GTK_WIDGET(b));
+	dialog = gtk_file_chooser_dialog_new("Save", GTK_WINDOW(toplevel), GTK_FILE_CHOOSER_ACTION_SAVE, "Cancel", GTK_RESPONSE_CANCEL, "Save", GTK_RESPONSE_ACCEPT, NULL);
+	if (gtk_dialog_run(GTK_DIALOG(dialog)) == GTK_RESPONSE_ACCEPT)
+	{
+		char *filepath;
+		filepath = gtk_file_chooser_get_filename(GTK_FILE_CHOOSER(dialog));
+		if (filepath != NULL)
+		{
+			char buffer[1000];
+  			int i = 0;
+  			int c;
+  			FILE *fp = fopen("RESULTAT.txt", "r");
+  			while(1) 
+  			{
+    			c = fgetc(fp);
+    			if( feof(fp) )
+    				break ;
+        
+    			buffer[i] = (char)c;
+    			i += 1;
+  				g_file_set_contents (filepath, buffer, strlen(buffer), NULL);
+  			}
+		}
+		else
+			printf("error\n");
+	}
+	gtk_widget_destroy(dialog);
+}
+
 void show_text(int compt)
 {
   TextBuffer = gtk_text_view_get_buffer(GTK_TEXT_VIEW(text_view));
   g_signal_connect(TextBuffer, "changed", G_CALLBACK(on_changed_text), NULL);
   char buffer[compt * 2];
   int i = 0;
-  char c;
+  int c; 
   FILE *fp = fopen("RESULTAT.txt", "r");
-  while(i<100) 
+  while(1) 
   {
     c = fgetc(fp);
+    if( feof(fp) )
+    	break ;
         
-    buffer[i] = c;
+    buffer[i] = (char)c;
     i += 1;
   }
   fclose(fp);
-  printf("%s\n",buffer );
   gtk_text_buffer_set_text(TextBuffer,(const gchar *) buffer , (gint) -1);
-}
-
-void test_text()
-{
-  char buffer[40];
-  int i = 0;
-  char c;
-  FILE *fp = fopen("RESULTAT.txt", "r");
-  while(1) {
-      c = fgetc(fp);
-      if( feof(fp) ) { 
-         break ;
-      }
-      buffer[i] = c;
-      i += 1;
-   }
-   fclose(fp);
-   printf("%s\n", buffer);
 }
 
 void on_Submit_button_clicked (GtkButton *b)
 {
   if (filename)
   {
-    //second_main(filename);
-    printf("\nend of OCR\n");
-    //FILE *fp = fopen("RESULTAT.txt", "r");
-    show_text(100);
-    //test_text();
+    int compt = second_main(filename);
+    show_text(compt);
     return;
   }
   (void)b;
 }
 
+void on_progress(gdouble fraction, gchar *info)
+{
+	gtk_progress_bar_set_fraction(GTK_PROGRESS_BAR(progress_bar), fraction);
+	gtk_progress_bar_set_text(GTK_PROGRESS_BAR(progress_bar), info);
+}
