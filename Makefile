@@ -2,8 +2,8 @@
 
 CC = gcc 
 CPPFLAGS = `pkg-config --cflags sdl` -MMD
-CFLAGS = -Werror -W -Wall -Wextra -std=c99 -O3
-LDLIBS = `pkg-config --libs sdl` -lSDL_image
+CFLAGS = -Werror -W -Wall -Wextra -std=c99 -O3 -flto
+LDLIBS = `pkg-config --libs sdl` -lSDL_image -flto -Ofast
 RM = rm -rf 
 EXEC= segmentation
 EXEC_TRAIN= segmentation_training

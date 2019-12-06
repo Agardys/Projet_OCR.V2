@@ -43,7 +43,7 @@ double** segmentation(char image[],int *compt) {
     
 
 
-   printf("\n /!\\ matrices vide = caractères vide ; option : 0-> rien; 1-> espace (avant); 2-> retour à la ligne (avant)" );
+   printf("\n /!\\ option : 0-> rien; 1-> espace (avant); 2-> retour à la ligne (avant)" );
     printf("\n \n \n *** end of segmentation  ***    \n  *** end of linearisation *** \n   *** end of image treatment ***\n");
 
     char n_str[10];
